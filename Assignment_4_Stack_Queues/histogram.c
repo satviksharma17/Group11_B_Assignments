@@ -61,12 +61,12 @@ int largestRectangleArea(int *heights, int heightsSize)
 
         while (!is_empty() && heights[peek()] >= now)
         {
-            int current = pop();
-            int right = i - 1;
-            int left = is_empty() ? 0 : peek() + 1;
-            int bestAnsForCurrent = heights[current] * (right - left + 1);
-            if (bestAnsForCurrent > ans)
-                ans = bestAnsForCurrent;
+            int cur = pop();
+            int r = i - 1;
+            int l = is_empty() ? 0 : peek() + 1;
+            int area = heights[cur] * (r - l + 1);
+            if (area > ans)
+                ans = area;
         }
         if (i != heightsSize)
             push(i);
