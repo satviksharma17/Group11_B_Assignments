@@ -1,0 +1,24 @@
+            {
+                pop();
+                break;
+            }
+            case 3:
+            {
+                display();
+                break;
+            }
+            case 4:
+            {
+                printf("Exiting....");
+               exit(0);
+            }
+            default:
+            {
+                printf("Please Enter valid choice ");
+            }
+
+        }
+    }
+
+}
+                                                              124,1         Bot
