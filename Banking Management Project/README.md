@@ -5,7 +5,7 @@ This project is designed so that users can create their accounts.Make transactio
 
 This Banking System store the user Info in record.dat file.The admin can also access all the info about the users by entering admin credentials.
 
-## Deployment
+## Installation
 The system can be easily used by compiling the it in any gcc compiler.
 
   
