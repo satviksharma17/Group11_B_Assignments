@@ -5,6 +5,7 @@
 #include<conio.h>
 void menu();
 void admin();
+//Structure for the account
 struct data{
     float amount;
     int number,age;
@@ -13,6 +14,18 @@ struct data{
     char addr[300];
     char l;
 };
+//fopen is uses for opening a file
+
+// Modes in fopen={r,w,a,r+,w+,a+};
+
+//r=open existing file for reading
+//w=open a file for writing writing starts from the beginning
+//a=open a text file for writing in appending mode.
+//r+ = this open the file for both reading and writing.
+//w+=opens a text file for both reading and writing.it first truncate the file to zero length if it exist.
+// a+=open a text file for both reading and writing.The file reading start from beginning and writing from the end.
+
+//fclose to close a file
 int account()
 {
     int choice;
@@ -23,11 +36,11 @@ int account()
             struct data d,d1;
             FILE *fp;
             int a=0;
-            fp=fopen("record.dat","r");
+            fp=fopen("record.dat","r");      //opening with read only mode
         printf("\n\n\t\t\t\t\tEnter your account number:");
         scanf("%d",&d.number);
 
-         while(fscanf(fp,"%d %s %d %f %s %c\n",&d1.number,d1.name,&d1.age,&d1.amount,d1.mobile,&d1.l)!=EOF)
+         while(fscanf(fp,"%d %s %d %f %s %c\n",&d1.number,d1.name,&d1.age,&d1.amount,d1.mobile,&d1.l)!=EOF)  // scanning account number in the file till the end of file not reached.
             if(d.number==d1.number)
          {
             printf("\nThis account number already exists..Please Choose Another..Taking You Back To Menu");
@@ -35,7 +48,7 @@ int account()
           menu();
           }
          if(a==0)
-            { fclose(fp); fp=fopen("record.dat","a+"); }
+            { fclose(fp); fp=fopen("record.dat","a+"); }   // opening file in a+ mode
         printf("\n\n\t\t\t\t\tEnter your name:");
         scanf("%s",d.name);
         printf("\n\n\t\t\t\t\tEnter your age:");
@@ -54,7 +67,7 @@ int account()
         scanf("%c",&d.l);
         scanf("%c",&d.l);
         fprintf(fp,"%d %s %d %f %s %c\n",d.number,d.name,d.age,d.amount,d.mobile,d.l);
-        fclose(fp);
+        fclose(fp);   // closing the file
         printf("\n\n\n\t\t\t\t\tYour account has been successfully created!!!!");
 
 
@@ -100,7 +113,7 @@ int show()
 void admin()
 {
     system("cls");
-     char password[]="satvik";
+     char password[]="satvik";   // password for th admin is satvik
     char pass[100];
     int choice;
     struct data d;
@@ -226,7 +239,7 @@ void update()
       menu();
       }
 }
-void c()
+void transaction()
 {
     int a=0;
     FILE *q,*w;
@@ -283,45 +296,6 @@ scanf("%d",&choice);
 if(choice==1)
     menu();
 }
-
-void menu()
-{
-    int a;
-    printf("\n\t\t\t\t\tPRESS ANY KEY TO CONTINUE...");
-    getch();
-    fordelay(100000000);
-    system("cls");
-    printf("\n\n\n\t\t\t\t\tWELCOME TO MAIN MENU");
-    printf("\n\n\n\n\n\t\t\t\t\t1.Create New account\n\t\t\t\t\t2.Show Data\n\t\t\t\t\t3.Transaction\n\t\t\t\t\t4.View all Info(Admin Only)\n\t\t\t\t\t5.Update Account Information\n\t\t\t\t\t6.Apply(CARDS/LOCKER)\n\t\t\t\t\t7.Delete Account\n\t\t\t\t\t8.Exit\n\n\n\n\t\t\t\t\tEnter Your Choice:");
-    scanf("%d",&a);
-    switch(a)
-    {
-    case 1:
-        account();
-          break;
-    case 2:
-        show();
-        break;
-    case 3:c();
-          break;
-    case 4:
-          admin();
-          break;
-    case 5:
-        update();
-        break;
-   case 6: apply();
-        break;
-    case 7:
-        delacc();
-        break;
-    case 8:
-        exit(0);
-         break;
-    }
-
-}
-
 void apply()
 {
     int choice,num,a=0;
@@ -420,6 +394,45 @@ void apply()
         exit(0);}
 
 }
+void menu()
+{
+    int a;
+    printf("\n\t\t\t\t\tPRESS ANY KEY TO CONTINUE...");
+    getch();
+    fordelay(100000000);
+    system("cls");
+    printf("\n\n\n\t\t\t\t\tWELCOME TO MAIN MENU");
+    printf("\n\n\n\n\n\t\t\t\t\t1.Create New account\n\t\t\t\t\t2.Show Data\n\t\t\t\t\t3.Transaction\n\t\t\t\t\t4.View all Info(Admin Only)\n\t\t\t\t\t5.Update Account Information\n\t\t\t\t\t6.Apply(CARDS/LOCKER)\n\t\t\t\t\t7.Delete Account\n\t\t\t\t\t8.Exit\n\n\n\n\t\t\t\t\tEnter Your Choice:");
+    scanf("%d",&a);
+    switch(a)
+    {
+    case 1:
+        account();
+          break;
+    case 2:
+        show();
+        break;
+    case 3:transaction();
+          break;
+    case 4:
+          admin();
+          break;
+    case 5:
+        update();
+        break;
+   case 6: apply();
+        break;
+    case 7:
+        delacc();
+        break;
+    case 8:
+        exit(0);
+         break;
+    }
+
+}
+
+
 int main()
 {
 
